@@ -1,0 +1,13 @@
+The legal text is the Libyan Civil Code and Law No. 6 of 2016, as published by the Ministry of Justice of Libya
+(https://aladel.gov.ly), retrieved 29 October 2026. They are official legislation of the State of Libya. The Ministry's
+site shows only a general "all rights reserved" footer and states no terms of reuse for its legal texts.
+
+Changes made by Lexifina: the text layer of the Ministry's PDF was converted to Markdown, one file per article, one
+paragraph or list item per line; Arabic presentation forms and a few look-alike letters were converted to standard
+Arabic letters, wrapped lines were joined, page numbers and footnotes were left out, and the amendment of 2016 was
+arranged as a git commit. The wording of the law was not changed. The Ministry of Justice does not endorse this
+repository.
+
+Lexifina's own contributions (the arrangement of the history, the commit messages, the tables and the
+tools) are dedicated to the public domain under CC0 1.0 Universal:
+https://creativecommons.org/publicdomain/zero/1.0/legalcode

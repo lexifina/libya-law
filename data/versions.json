@@ -1,0 +1,25 @@
+{
+ "country": "LY",
+ "acts": [
+  {
+   "slug": "civil-code",
+   "short": "CC",
+   "title": "القانون المدني الليبي (Libyan Civil Code)",
+   "url": "https://aladel.gov.ly/home/%d8%a7%d9%84%d9%82%d8%a7%d9%86%d9%88%d9%86-%d8%a7%d9%84%d9%85%d8%af%d9%86%d9%8a-%d9%88%d8%a7%d9%84%d9%85%d9%84%d8%ad%d9%82-%d8%a7%d9%84%d9%85%d8%b9%d8%af%d9%84-%d8%a7%d9%84%d8%ac%d8%b2%d8%a1-%d8%a7/",
+   "versions": [
+    {
+     "from": "2016-01-18",
+     "units": 1277,
+     "source_url": "https://aladel.gov.ly/home/wp-content/uploads/2016/04/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88-%D9%86-%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A.pdf",
+     "sha256": "e8e13734ecb625ff00735c34dc520aa75c3de80d7f1a687d82489b813f5cbf35"
+    },
+    {
+     "from": "2016-01-19",
+     "units": 1262,
+     "source_url": "https://aladel.gov.ly/home/wp-content/uploads/2016/04/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88-%D9%86-%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A.pdf",
+     "sha256": "e8e13734ecb625ff00735c34dc520aa75c3de80d7f1a687d82489b813f5cbf35"
+    }
+   ]
+  }
+ ]
+}
