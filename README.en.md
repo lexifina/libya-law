@@ -59,6 +59,7 @@ The first version is credited to the publisher, the Ministry of Justice of Libya
 - `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before and compares it with the corpus, whose hash is in `data/corpus.sha256`; it also checks that every commit's trailers parse, that `main` has no merge commits and that no commit is dated in the future.
 - `tools/build.py` writes the history from that one corpus file, and the same corpus gives the same commit hashes. [`REPRODUCE.md`](REPRODUCE.md) records that the checks were not yet run for this build and that no second build has been compared.
 - The sha256 of the PDF both versions were read from is in `data/versions.json`, and every decision made by hand (such as Article 870, which the PDF misprints as 780) is in [`REPRODUCE.md`](REPRODUCE.md).
+- [vulnerabilities/](vulnerabilities/README.en.md): possible drafting mistakes in this law, found by global-law's detectors and checked by hand. Not run yet.
 
 ## What it does not show
 
@@ -78,6 +79,10 @@ The first version is credited to the publisher, the Ministry of Justice of Libya
 See [`LICENSE`](LICENSE). The Civil Code and Law No. 6 of 2016 are official legislation of the State of Libya as the Ministry of Justice publishes them; its site shows only a general "all rights reserved" footer and states no terms of reuse. Lexifina's history, commit messages, tables and tools are CC0 1.0.
 
 No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
+
+## Visualisations
+
+- [visualisations/](visualisations/README.en.md): charts drawn from this repository. Not drawn yet.
 
 ## More
 
