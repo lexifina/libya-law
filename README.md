@@ -1,35 +1,41 @@
-# Libya: law history in git
+# ليبيا: تاريخ القانون في git
 
+**العربية** · [English](README.en.md)
 
-The law of Libya as a git history: one file per article, one commit per version on the day it took effect, and the act that made each change as the commit's author. `git blame` names the act behind every article; `git log` lists every change to an article; picking a date gives the text in force that day.
+<picture>
+<source media="(prefers-color-scheme: dark)" srcset="data/ar/effort-dark.svg">
+<img alt="القانون الليبي في هذا المستودع: ما يحتويه، والتعديلات حسب سنة نفاذها، والاكتمال مقارنةً بالمصادر الرسمية، وصحة المحتوى" src="data/ar/effort-light.svg" width="880">
+</picture>
 
-Part of [lexifina/global-law](https://github.com/lexifina/global-law), one git history for every country's law: this is Libya's national law, which global-law reads at `libya/national/acts/`.
+القانون الليبي في صورة سجل git: ملف لكل مادة، ولكل نسخة commit واحد في يوم نفاذها، والتشريع الذي أجرى كل تعديل هو مؤلف الـ commit. يبيّن `git blame` التشريع الذي يقف وراء كل مادة؛ ويسرد `git log` كل تعديل طرأ على مادة؛ واختيار تاريخ ما يعطي النص النافذ في ذلك اليوم.
 
-**What is in it now:** one act, the Civil Code (القانون المدني) of 1953, in two versions: as the Ministry of Justice prints it before Law No. 6 of 2016 (1,151 articles), and as that law left it on 19 January 2016 (1,136 articles). No other act is here yet. [`civil-code/README.md`](civil-code/README.md) lists every article; [`REPRODUCE.md`](REPRODUCE.md) says how the files were made.
+جزء من [lexifina/global-law](https://github.com/lexifina/global-law)، وهو سجل git واحد لقانون كل بلد: هذا هو القانون الوطني الليبي، الذي يقرؤه global-law في `libya/national/acts/`.
 
-Each article is one file in `civil-code/`: `civil-code/art-0001.md` is Article 1 and `civil-code/art-0290-bis.md` Article 290 bis. Each heading (book, part, chapter, section) is a `sec-*.md` file named after the article it precedes (`civil-code/sec-0006.md`).
+**المحتوى الحالي:** تشريع واحد، القانون المدني لسنة 1953، في نسختين: كما تطبعه وزارة العدل قبل القانون رقم 6 لسنة 2016 (1151 مادة)، وكما أصبح بعد ذلك القانون في 19 يناير 2016 (1136 مادة). ولا يوجد هنا حتى الآن أي تشريع آخر. يسرد [`civil-code/README.md`](civil-code/README.md) كل مادة؛ ويبيّن [`REPRODUCE.md`](REPRODUCE.md) كيف أُعدّت الملفات.
 
-The text is in Arabic, the official language, as the Ministry's PDF prints it. An English translation is not part of this record.
+كل مادة ملف واحد في `civil-code/`: `civil-code/art-0001.md` هي المادة 1 و`civil-code/art-0290-bis.md` هي المادة 290 مكرر. وكل عنوان (كتاب، باب، فصل، فرع) ملف `sec-*.md` يحمل اسم المادة التي يسبقها (`civil-code/sec-0006.md`).
 
-## Questions as git commands
+النص باللغة العربية، وهي اللغة الرسمية، كما يطبعه ملف PDF الصادر عن الوزارة. والترجمة الإنجليزية ليست جزءًا من هذا السجل.
 
-| Question | Command |
+## الأسئلة في صورة أوامر git
+
+| السؤال | الأمر |
 | --- | --- |
-| Every change to Article 1 of the Civil Code | `git log -p --word-diff -- civil-code/art-0001.md` |
-| Which act wrote each line of Article 1? | `git blame civil-code/art-0001.md` |
-| Every version of the Civil Code, with the day each took effect | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- civil-code ":^civil-code/README.md"` |
-| Article 1 as in force on 18 January 2016, before Law No. 6 of 2016 | `python tools/on.py 2016-01-18 civil-code art-0001` |
+| كل تعديل طرأ على المادة 1 من القانون المدني | `git log -p --word-diff -- civil-code/art-0001.md` |
+| أي تشريع كتب كل سطر من المادة 1؟ | `git blame civil-code/art-0001.md` |
+| كل نسخ القانون المدني، مع يوم نفاذ كل منها | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- civil-code ":^civil-code/README.md"` |
+| المادة 1 كما كانت نافذة في 18 يناير 2016، قبل القانون رقم 6 لسنة 2016 | `python tools/on.py 2016-01-18 civil-code art-0001` |
 
-**Outside git**, we also host this record publicly, for free:
+**خارج git**، نستضيف هذا السجل أيضًا للعموم، مجانًا:
 
-- **[Ask Claude about Libyan law](https://global-law.lexifina.com/v1/try_claude?country=libya)**: opens Claude with a first question ready.
-- **[Ask ChatGPT](https://global-law.lexifina.com/v1/try_chatgpt?country=libya)**: the same question in ChatGPT.
-- **[Search Libyan law on our site](https://lexifina.com/law?country=libya&q=%D8%B9%D9%82%D8%AF+%D8%A7%D9%84%D8%A8%D9%8A%D8%B9)**: a search for "عقد البيع" (contract of sale), with each provision's text and its versions, no account needed.
-- **[Developer REST API](https://global-law.lexifina.com/v1/search_law?query=%D8%B9%D9%82%D8%AF+%D8%A7%D9%84%D8%A8%D9%8A%D8%B9&jurisdiction=libya)**: the same search as JSON, with no key. See the [documentation here](https://lexifina.com/api/global-law).
+- **[اسأل Claude عن القانون الليبي](https://global-law.lexifina.com/v1/try_claude?country=libya)**: يفتح Claude ومعه سؤال أول جاهز.
+- **[اسأل ChatGPT](https://global-law.lexifina.com/v1/try_chatgpt?country=libya)**: السؤال نفسه في ChatGPT.
+- **[ابحث في القانون الليبي على موقعنا](https://lexifina.com/law?country=libya&q=%D8%B9%D9%82%D8%AF+%D8%A7%D9%84%D8%A8%D9%8A%D8%B9)**: بحث عن "عقد البيع"، مع نص كل حكم ونسخه، دون الحاجة إلى حساب.
+- **[واجهة REST API للمطوّرين](https://global-law.lexifina.com/v1/search_law?query=%D8%B9%D9%82%D8%AF+%D8%A7%D9%84%D8%A8%D9%8A%D8%B9&jurisdiction=libya)**: البحث نفسه بصيغة JSON، دون مفتاح. انظر [التوثيق هنا](https://lexifina.com/api/global-law).
 
-Both assistants read the record through the free Global law connector (MCP, `https://global-law.lexifina.com/mcp`); the first time, the chat gives you the link that adds it. Ask in Arabic or in English.
+يقرأ المساعدان كلاهما السجل عبر موصِّل Global law المجاني (MCP، `https://global-law.lexifina.com/mcp`)؛ وفي المرة الأولى تعطيك المحادثة الرابط الذي يضيفه. اسأل بالعربية أو بالإنجليزية.
 
-**Host it yourself easily.** All it takes is git and Python, and the tools run on your machine:
+**استضفه بنفسك بسهولة.** كل ما يلزم هو git وPython، والأدوات تعمل على جهازك:
 
 ```sh
 git clone --depth 1 https://github.com/lexifina/global-law && cd global-law
@@ -37,53 +43,51 @@ python3 tools/countries.py add libya/national/acts
 python3 tools/law.py show 2026-01-01 libya/national/acts/civil-code/art-0001.md
 ```
 
-Opened in Claude Code, Cursor, VS Code or Codex, the clone also starts a local MCP server with the same tools ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
+عند فتح النسخة المستنسخة في Claude Code أو Cursor أو VS Code أو Codex، تشغّل أيضًا خادم MCP محليًا بالأدوات نفسها ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
 
-## Dates
+## التواريخ
 
-Each commit is dated at noon, Africa/Tripoli, on the day the version took effect, and carries it in its `In-force:` trailer:
+يحمل كل commit تاريخ الظهيرة، بتوقيت Africa/Tripoli، من اليوم الذي نفذت فيه النسخة، ويحمل هذا اليوم في تذييله (trailer) `In-force:`:
 
-- the first version is dated 18 January 2016, the day before Law No. 6 of 2016 took effect. The Ministry's volume does not say when that text took effect: the Code was promulgated on 28 November 1953 and published on 20 February 1954, and the text already includes its amendments to 2015. A date before 18 January 2016 gives no text;
-- Law No. 6 of 2016 of the General National Congress took effect on its day of issue, 19 January 2016 (its article 4). It replaced 60 articles (two of them, 515 and 1052, with unchanged words), added Article 290 bis and repealed 16 articles, whose files are removed from that day.
+- تحمل النسخة الأولى تاريخ 18 يناير 2016، وهو اليوم السابق لنفاذ القانون رقم 6 لسنة 2016. ولا يذكر مجلد الوزارة متى نفذ ذلك النص: فقد صدر القانون في 28 نوفمبر 1953 ونُشر في 20 فبراير 1954، والنص يتضمن أصلًا تعديلاته حتى 2015. أي تاريخ قبل 18 يناير 2016 لا يعطي نصًا؛
+- نفذ القانون رقم 6 لسنة 2016 الصادر عن المؤتمر الوطني العام من تاريخ صدوره، 19 يناير 2016 (مادته 4). وقد استبدل 60 مادة (اثنتان منها، 515 و1052، دون تغيير في ألفاظهما)، وأضاف المادة 290 مكرر وألغى 16 مادة، تُحذف ملفاتها اعتبارًا من ذلك اليوم.
 
-The first version is credited to the publisher, the Ministry of Justice of Libya, as the "oldest version available" (`Kind: publisher`), and the changes of 19 January 2016 to Law No. 6 of 2016. The committer is Lexifina.
+تُنسب النسخة الأولى إلى الجهة الناشرة، وزارة العدل الليبية، بوصفها "أقدم نسخة متاحة" (`Kind: publisher`)، وتُنسب تعديلات 19 يناير 2016 إلى القانون رقم 6 لسنة 2016. والمُودِع (committer) هو Lexifina.
 
-## How it is checked
+## كيف يُتحقَّق منه
 
-- `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before and compares it with the corpus, whose hash is in `data/corpus.sha256`; it also checks that every commit's trailers parse, that `main` has no merge commits and that no commit is dated in the future.
-- `tools/build.py` writes the history from that one corpus file, and the same corpus gives the same commit hashes. [`REPRODUCE.md`](REPRODUCE.md) records that the checks were not yet run for this build and that no second build has been compared.
-- The sha256 of the PDF both versions were read from is in `data/versions.json`, and every decision made by hand (such as Article 870, which the PDF misprints as 780) is in [`REPRODUCE.md`](REPRODUCE.md).
+- يعيد `tools/check_repo.py` قراءة كل نسخة من git في يوم نفاذها وفي اليوم السابق له، ويقارنها بالمجموعة، التي توجد بصمتها (hash) في `data/corpus.sha256`؛ ويتحقق أيضًا من أن تذييلات كل commit قابلة للتحليل، وأن `main` خالٍ من commits الدمج، وأنه لا يوجد commit مؤرَّخ في المستقبل.
+- يكتب `tools/build.py` السجل من ملف المجموعة الواحد هذا، والمجموعة نفسها تعطي بصمات الـ commits نفسها. ويسجّل [`REPRODUCE.md`](REPRODUCE.md) أن عمليات التحقق لم تُشغَّل بعد لهذا البناء وأنه لم تُقارَن به أي عملية بناء ثانية.
+- توجد بصمة sha256 لملف PDF الذي قُرئت منه النسختان كلتاهما في `data/versions.json`، وكل قرار اتُّخذ يدويًا (مثل المادة 870، التي يطبعها ملف PDF خطأً 780) مذكور في [`REPRODUCE.md`](REPRODUCE.md).
 
-## What it does not show
+## ما لا يُظهره
 
-- **Earlier versions of the Code.** It was amended many times from 1954; those texts are not online in one place, and none is here.
-- **Any other Libyan act**, including the Constitutional Declaration of 2011, the Penal Code and the Commercial Code, and the Official Gazette. No official source with a usable text has been found for them yet.
-- **Footnotes and page numbers** of the Ministry's PDF.
-- **A clean text layer.** The text comes from the PDF's own text layer, without OCR: some words keep stray spaces and some punctuation is out of place. For anything that matters, read the Ministry's original.
+- **النسخ السابقة من القانون.** عُدِّل القانون مرات كثيرة منذ 1954؛ ونصوص تلك النسخ غير متاحة على الإنترنت في مكان واحد، ولا يوجد أي منها هنا.
+- **أي تشريع ليبي آخر**، بما في ذلك الإعلان الدستوري لسنة 2011 وقانون العقوبات والقانون التجاري، وكذلك الجريدة الرسمية. ولم يُعثر حتى الآن على مصدر رسمي فيه نص صالح للاستخدام لأي منها.
+- **الحواشي وأرقام الصفحات** في ملف PDF الصادر عن الوزارة.
+- **طبقة نصية سليمة.** النص مأخوذ من الطبقة النصية لملف PDF نفسه، دون تعرّف ضوئي على الحروف (OCR): فبعض الكلمات تحتفظ بمسافات زائدة وبعض علامات الترقيم في غير موضعها. وفي كل ما له أهمية، ارجع إلى الأصل الصادر عن الوزارة.
 
-## Sources
+## المصادر
 
-| Source | Kind | Past versions | Notes |
+| المصدر | النوع | النسخ السابقة | ملاحظات |
 | --- | --- | --- | --- |
-| [Ministry of Justice of Libya](https://aladel.gov.ly/home/%d8%a7%d9%84%d9%82%d8%a7%d9%86%d9%88%d9%86-%d8%a7%d9%84%d9%85%d8%af%d9%86%d9%8a-%d9%88%d8%a7%d9%84%d9%85%d9%84%d8%ad%d9%82-%d8%a7%d9%84%d9%85%d8%b9%d8%af%d9%84-%d8%a7%d9%84%d8%ac%d8%b2%d8%a1-%d8%a7/) (aladel.gov.ly) | Official legislation: the Civil Code volume (PDF, 14 April 2016) | the Code before Law No. 6 of 2016, then that law's text | Both versions; retrieved on 29 October 2026 |
+| [وزارة العدل الليبية](https://aladel.gov.ly/home/%d8%a7%d9%84%d9%82%d8%a7%d9%86%d9%88%d9%86-%d8%a7%d9%84%d9%85%d8%af%d9%86%d9%8a-%d9%88%d8%a7%d9%84%d9%85%d9%84%d8%ad%d9%82-%d8%a7%d9%84%d9%85%d8%b9%d8%af%d9%84-%d8%a7%d9%84%d8%ac%d8%b2%d8%a1-%d8%a7/) (aladel.gov.ly) | التشريعات الرسمية: مجلد القانون المدني (PDF، 14 أبريل 2016) | القانون قبل القانون رقم 6 لسنة 2016، ثم نص ذلك القانون | النسختان كلتاهما؛ جُلب في 29 أكتوبر 2026 |
 
-## Licence
+## الترخيص
 
-See [`LICENSE`](LICENSE). The Civil Code and Law No. 6 of 2016 are official legislation of the State of Libya as the Ministry of Justice publishes them; its site shows only a general "all rights reserved" footer and states no terms of reuse. Lexifina's history, commit messages, tables and tools are CC0 1.0.
+انظر [`LICENSE`](LICENSE). القانون المدني والقانون رقم 6 لسنة 2016 تشريعات رسمية لدولة ليبيا كما تنشرها وزارة العدل؛ ولا يعرض موقعها سوى تذييل عام بعبارة "جميع الحقوق محفوظة" ولا يذكر أي شروط لإعادة الاستخدام. أما سجل Lexifina ورسائل الـ commits والجداول والأدوات فهي بموجب CC0 1.0.
 
-No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
+لم يكتب أي نموذج ذكاء اصطناعي نصًا قانونيًا ولم يترجمه ولم يصححه، ولا يعمل أي نموذج عند بناء السجل؛ أما البرامج النصية (scripts) فكتبها نموذج ذكاء اصطناعي (انظر [`REPRODUCE.md`](REPRODUCE.md)).
 
-## بالعربية
+هذا النص ترجمة للنسخة الإنجليزية ([README.en.md](README.en.md))؛ وعند الاختلاف تسود النسخة الإنجليزية.
 
-تاريخ القانون المدني الليبي في git: ملف لكل مادة، وإيداع (commit) لكل نسخة في يوم نفاذها. النص مأخوذ من الملف الذي تنشره وزارة العدل الليبية: القانون المدني كما كان قبل القانون رقم 6 لسنة 2016 (1151 مادة)، ثم كما عدّله ذلك القانون، النافذ من 19 يناير 2016. يعرض `python tools/on.py 2016-01-18 civil-code art-0001` المادة 1 كما كانت قبل التعديل، ويبيّن `git blame civil-code/art-0001.md` القانون الذي كتب كل سطر.
+## المزيد
 
-## More
+من مستودع [lexifina/global-law](https://github.com/lexifina/global-law) (صفحات باللغة الإنجليزية):
 
-From [lexifina/global-law](https://github.com/lexifina/global-law):
-
-- [FEATURES.md](https://github.com/lexifina/global-law/blob/main/FEATURES.md): every feature, and what every corpus must support (`git blame`, `law.py`, the MCP tools)
-- [FAQ.md](https://github.com/lexifina/global-law/blob/main/FAQ.md): questions and answers · [CONTRIBUTING.md](https://github.com/lexifina/global-law/blob/main/CONTRIBUTING.md): proposing changes · [MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md): the MCP server · [REPRODUCE.md](https://github.com/lexifina/global-law/blob/main/REPRODUCE.md): how it was built · [CHANGELOG.md](https://github.com/lexifina/global-law/blob/main/CHANGELOG.md)
-- [FRESHNESS.md](https://github.com/lexifina/global-law/blob/main/FRESHNESS.md): how current each corpus is · [Monitoring](https://github.com/lexifina/global-law/tree/main/monitoring): whether updates are running · [WATCHING.md](https://github.com/lexifina/global-law/blob/main/WATCHING.md): how each official source is watched for changes
-- [performance/](https://github.com/lexifina/global-law/tree/main/performance): how fast the tools are, measured
-- [visualisations/](https://github.com/lexifina/global-law/tree/main/visualisations): charts and bridges across the world's law
-- [Vulnerabilities](https://github.com/lexifina/global-law/tree/main/vulnerabilities): mistakes in legislation as published
+- [FEATURES.md](https://github.com/lexifina/global-law/blob/main/FEATURES.md): جميع الميزات، وما يجب أن تدعمه كل مجموعة (`git blame`، `law.py`، أدوات MCP)
+- [FAQ.md](https://github.com/lexifina/global-law/blob/main/FAQ.md): أسئلة وأجوبة · [CONTRIBUTING.md](https://github.com/lexifina/global-law/blob/main/CONTRIBUTING.md): اقتراح تغييرات · [MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md): خادم MCP · [REPRODUCE.md](https://github.com/lexifina/global-law/blob/main/REPRODUCE.md): طريقة البناء · [CHANGELOG.md](https://github.com/lexifina/global-law/blob/main/CHANGELOG.md)
+- [FRESHNESS.md](https://github.com/lexifina/global-law/blob/main/FRESHNESS.md): مدى حداثة كل مجموعة · [المراقبة](https://github.com/lexifina/global-law/tree/main/monitoring): هل تعمل التحديثات · [WATCHING.md](https://github.com/lexifina/global-law/blob/main/WATCHING.md): كيف يُراقَب كل مصدر رسمي لرصد التغييرات
+- [performance/](https://github.com/lexifina/global-law/tree/main/performance): سرعة الأدوات كما قيست
+- [visualisations/](https://github.com/lexifina/global-law/tree/main/visualisations): رسوم بيانية وروابط عبر قوانين العالم
+- [الثغرات](https://github.com/lexifina/global-law/tree/main/vulnerabilities): أخطاء في التشريعات كما نُشرت
