@@ -87,3 +87,19 @@ The texts in every folder other than `قوانين/1953/القانون-المد�
 3. `push.py` fast-forwards GitHub `main` and checks it with `git ls-remote`.
 
 No OCR was used, and no model wrote, edited or summarised legal text.
+## Ministry of Justice texts, corrections and notes (26 November 2026)
+
+- `aladel.py` (same runner) added 45 laws that the Ministry of Justice publishes as HTML text on aladel.gov.ly
+  (WordPress REST API, one post per request, 1 in flight, at least 1 second apart). Each is dated by the issue day
+  read from its own closing lines (a Gregorian day only, checked against the year in its title), and its articles
+  are split at the headings as published (numeric or written out, words unchanged). 93 posts were held: no single
+  Gregorian issue day (72), no Gregorian year in the title (10), a day that disagrees with the title (7), articles
+  that cannot be separated (3), a consolidated text (1). Texts already present from DCAF were skipped.
+- Two DCAF texts with their amendments ("و تعديلاته") were first committed as texts as made: they are corrected by
+  appended commits (`Kind: correction`, `Corrects:`), not by rewriting history. Law No. 10 of 1992 (police) is
+  re-dated 1994-03-21 by its newest linked amendment; Decision No. 124 of 2009 is removed, as no amendment date is
+  given for it.
+- Commit `f4811a0` (a one-line fix to this file) is authored by a person's git identity instead of Lexifina, by a
+  local configuration slip; it changes no legal text and is left in place. The clones now commit as Lexifina.
+- manshurat.org was checked for Libyan texts: its search is closed to visitors (403, access denied) and its listings
+  have no country filter, so nothing was taken from it.
