@@ -11,20 +11,20 @@ The law of Libya as a git history: one file per article, one commit per version 
 
 Part of [lexifina/global-law](https://github.com/lexifina/global-law), one git history for every country's law: this is Libya's national law, which global-law reads at `libya/national/acts/`.
 
-**What is in it now:** one act, the Civil Code (القانون المدني) of 1953, in two versions: as the Ministry of Justice prints it before Law No. 6 of 2016 (1,151 articles), and as that law left it on 19 January 2016 (1,136 articles). No other act is here yet. [`civil-code/README.md`](civil-code/README.md) lists every article; [`REPRODUCE.md`](REPRODUCE.md) says how the files were made.
+**What is in it now:** about 2,050 texts from 1948 to 2020: the Constitutional Declaration of 2011 with its amendments and the earlier constitutions, 635 laws, 1,149 decisions, 208 parliamentary decisions, executive regulations and agreements, and the Civil Code of 1953 in two versions. The Penal Code and the procedure codes are not here yet. [`STRUCTURE.md`](STRUCTURE.md) gives the layout; [`REPRODUCE.md`](REPRODUCE.md) says how the files were made.
 
-Each article is one file in `civil-code/`: `civil-code/art-0001.md` is Article 1 and `civil-code/art-0290-bis.md` Article 290 bis. Each heading (book, part, chapter, section) is a `sec-*.md` file named after the article it precedes (`civil-code/sec-0006.md`).
+Folders are named in Arabic, by type and year: `قوانين/<year>/<number>-<subject>/` for laws, `قرارات/` for decisions, `الإعلان-الدستوري/` for the Constitutional Declaration. Each article is one file (`مادة-001.md`); `ديباجة.md` holds the title and preamble. The Civil Code is in `قوانين/1953/القانون-المدني/`, its articles in folders of 500 (`مواد-0001-0500/مادة-0001.md`).
 
-The text is in Arabic, the official language, as the Ministry's PDF prints it. An English translation is not part of this record.
+The text is in Arabic, the official language. An English translation is not part of this record.
 
 ## Questions as git commands
 
 | Question | Command |
 | --- | --- |
-| Every change to Article 1 of the Civil Code | `git log -p --word-diff -- civil-code/art-0001.md` |
-| Which act wrote each line of Article 1? | `git blame civil-code/art-0001.md` |
-| Every version of the Civil Code, with the day each took effect | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an" -- civil-code ":^civil-code/README.md"` |
-| Article 1 as in force on 18 January 2016, before Law No. 6 of 2016 | `python tools/on.py 2016-01-18 civil-code art-0001` |
+| Every change to Article 1 of the Civil Code | `git log --follow -p --word-diff -- قوانين/1953/القانون-المدني/مواد-0001-0500/مادة-0001.md` |
+| Which act wrote each line of Article 1? | `git blame قوانين/1953/القانون-المدني/مواد-0001-0500/مادة-0001.md` |
+| Every text of the Constitutional Declaration and its amendments | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %an %s" -- الإعلان-الدستوري نصوص-دستورية` |
+| Every law of 2013 | `git log --format="%h %(trailers:key=In-force,valueonly,separator=) %s" -- قوانين/2013` |
 
 **Outside git**, we also host this record publicly, for free:
 
@@ -40,7 +40,7 @@ Both assistants read the record through the free Global law connector (MCP, `htt
 ```sh
 git clone --depth 1 https://github.com/lexifina/global-law && cd global-law
 python3 tools/countries.py add libya/national/acts
-python3 tools/law.py show 2026-01-01 libya/national/acts/civil-code/art-0001.md
+python3 tools/law.py show 2026-01-01 libya/national/acts/الإعلان-الدستوري/مادة-001.md
 ```
 
 Opened in Claude Code, Cursor, VS Code or Codex, the clone also starts a local MCP server with the same tools ([MCP.md](https://github.com/lexifina/global-law/blob/main/MCP.md)).
@@ -54,6 +54,8 @@ Each commit is dated at noon, Africa/Tripoli, on the day the version took effect
 
 The first version is credited to the publisher, the Ministry of Justice of Libya, as the "oldest version available" (`Kind: publisher`), and the changes of 19 January 2016 to Law No. 6 of 2016. The committer is Lexifina.
 
+Every other text is dated by the day it was made (DCAF's field "تاريخ النص"), and is credited to the body that made it; its `In-force-basis:` trailer says whether the text applies from that day or from a later day the source does not give (often its publication in the Official Gazette). Before 1970 the commit date is 1 January 1970 and the real day starts the subject. The consolidated Constitutional Declaration is dated by the newest amendment the source links to it (6 August 2014). Texts whose day cannot be read, or whose day disagrees with the year in their title, are held.
+
 ## How it is checked
 
 - `tools/check_repo.py` reads every version back from git on the day it took effect and on the day before and compares it with the corpus, whose hash is in `data/corpus.sha256`; it also checks that every commit's trailers parse, that `main` has no merge commits and that no commit is dated in the future.
@@ -64,19 +66,21 @@ The first version is credited to the publisher, the Ministry of Justice of Libya
 ## What it does not show
 
 - **Earlier versions of the Code.** It was amended many times from 1954; those texts are not online in one place, and none is here.
-- **Any other Libyan act**, including the Constitutional Declaration of 2011, the Penal Code and the Commercial Code, and the Official Gazette. No official source with a usable text has been found for them yet.
+- **The Penal Code, the procedure codes and the Commercial Code.** The source's texts of these codes do not say which state of the code they show, so they are held. Nor is the Official Gazette here, or the amendments to the Constitutional Declaration after 2014.
+- **Most texts outside the security and justice sector.** The DCAF database covers the security sector (police, courts, armed forces, oversight bodies) and the constitutional texts; other laws are here only where it carries them.
 - **Footnotes and page numbers** of the Ministry's PDF.
-- **A clean text layer.** The text comes from the PDF's own text layer, without OCR: some words keep stray spaces and some punctuation is out of place. For anything that matters, read the Ministry's original.
+- **An official text.** The Civil Code comes from the PDF's own text layer, without OCR (some words keep stray spaces); the other texts are DCAF's unofficial transcriptions. For anything that matters, read the original in the Official Gazette.
 
 ## Sources
 
 | Source | Kind | Past versions | Notes |
 | --- | --- | --- | --- |
 | [Ministry of Justice of Libya](https://aladel.gov.ly/home/%d8%a7%d9%84%d9%82%d8%a7%d9%86%d9%88%d9%86-%d8%a7%d9%84%d9%85%d8%af%d9%86%d9%8a-%d9%88%d8%a7%d9%84%d9%85%d9%84%d8%ad%d9%82-%d8%a7%d9%84%d9%85%d8%b9%d8%af%d9%84-%d8%a7%d9%84%d8%ac%d8%b2%d8%a1-%d8%a7/) (aladel.gov.ly) | Official legislation: the Civil Code volume (PDF, 14 April 2016) | the Code before Law No. 6 of 2016, then that law's text | Both versions; retrieved on 29 October 2026 |
+| [DCAF Libya Security Sector Legal Database](https://security-legislation.ly/ar/) (security-legislation.ly) | Unofficial transcriptions of laws, decisions, regulations, constitutional texts and agreements, in Arabic | each text as made; the Constitutional Declaration as amended | About 2,050 texts; retrieved on 26 November 2026 |
 
 ## Licence
 
-See [`LICENSE`](LICENSE). The Civil Code and Law No. 6 of 2016 are official legislation of the State of Libya as the Ministry of Justice publishes them; its site shows only a general "all rights reserved" footer and states no terms of reuse. Lexifina's history, commit messages, tables and tools are CC0 1.0.
+See [`LICENSE`](LICENSE). The texts are official texts of the State of Libya. The Ministry of Justice and DCAF show only a general "all rights reserved" footer and state no terms of reuse; DCAF marks its texts as unofficial transcriptions. Lexifina's history, commit messages, tables and tools are CC0 1.0.
 
 No AI model wrote, translated or corrected legal text, and none runs when the history is built; the scripts were written by an AI model (see [`REPRODUCE.md`](REPRODUCE.md)).
 

@@ -70,3 +70,20 @@ The commit messages are written by `build.py` from the source data.
 
 Model use at data-build time:
 - Claude Code (Claude Sonnet 5.5) wrote the scripts. No model wrote, edited or summarised legal text, and no model runs at data-build or git-build time.
+
+## The build of 26 November 2026 (DCAF texts)
+
+The texts in every folder other than `قوانين/1953/القانون-المدني/` were added by the runner in
+`scripts/libya-law/runner/` of the Lexifina monorepo:
+
+1. `run.py` lists the Arabic posts of the DCAF Libya Security Sector Legal Database through its public WordPress
+   REST API (`/ar/wp-json/wp/v2/latest-laws`, 22 requests of 100), then fetches each post's page for the fields the
+   API does not carry (number, date, issuing body, the text a consolidation revises). 4 requests in flight, at least
+   1 second apart each; 2,197 requests in all, every one answered 200.
+2. `build.py` turns each text into one folder (one file per article), dated 12:00 Africa/Tripoli on its day, and
+   appends the commits to `main` with `git fast-import`, oldest day first in each pass. Held texts (drafts, a day
+   that looks like a placeholder or disagrees with the title's year, the Penal Code and the procedure codes whose
+   state is not given) are listed in `held.tsv` beside the runner.
+3. `push.py` fast-forwards GitHub `main` and checks it with `git ls-remote`.
+
+No OCR was used, and no model wrote, edited or summarised legal text.
