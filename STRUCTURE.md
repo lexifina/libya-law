@@ -6,8 +6,8 @@ Western digits. Every folder holds at most 1,000 entries.
 | Folder | What | One file is |
 | --- | --- | --- |
 | `الإعلان-الدستوري/` | The Constitutional Declaration of 3 August 2011 (Libya's interim constitution): the text as issued, then the text with its amendments | one article (`مادة-001.md`) |
-| `تعديلات-دستورية/<السنة>/<الرقم>-<الموضوع>/` | Constitutional amendments, by year and number | one article |
-| `إعلانات-دستورية/<السنة>/<الموضوع>/` | Other constitutional declarations | one article |
+| `نصوص-دستورية/<السنة>/<الرقم>-<الموضوع>/` | Constitutional texts: the Constitution of 1951, the constitutional declarations of 1969 and 1977, the Green Charter of 1988, and the amendments to the Declaration of 2011 | one article |
+| `إعلانات/<السنة>/<الموضوع>/` | Declarations (such as the Declaration of Liberation of 2011) | one article |
 | `قوانين/<السنة>/<الرقم>-<الموضوع>/` | Laws, codes and law-decrees, by the year the law was made and its number (no number: the subject only) | one article |
 | `قرارات/<السنة>/<الرقم>-<الموضوع>/` | Decisions and decrees of the Council of Ministers, ministers and other bodies with regulatory power | one article |
 | `قرارات-برلمانية/<السنة>/<الرقم>-<الموضوع>/` | Decisions of the House of Representatives, the General National Congress and the National Transitional Council | one article |
