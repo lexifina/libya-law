@@ -1,13 +1,25 @@
-The legal text is the Libyan Civil Code and Law No. 6 of 2016, as published by the Ministry of Justice of Libya
-(https://aladel.gov.ly), retrieved 29 October 2026. They are official legislation of the State of Libya. The Ministry's
-site shows only a general "all rights reserved" footer and states no terms of reuse for its legal texts.
-
-Changes made by Lexifina: the text layer of the Ministry's PDF was converted to Markdown, one file per article, one
-paragraph or list item per line; Arabic presentation forms and a few look-alike letters were converted to standard
-Arabic letters, wrapped lines were joined, page numbers and footnotes were left out, and the amendment of 2016 was
-arranged as a git commit. The wording of the law was not changed. The Ministry of Justice does not endorse this
-repository.
-
-Lexifina's own contributions (the arrangement of the history, the commit messages, the tables and the
+Lexifina's own contributions (the arrangement of the history, the commit messages, the tables, STRUCTURE.md and the
 tools) are dedicated to the public domain under CC0 1.0 Universal:
 https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+The legal texts are official texts of the State of Libya (laws, decisions, regulations, constitutional texts,
+agreements). The sources and their own terms:
+
+1. Ministry of Justice of Libya (https://aladel.gov.ly): the Civil Code and Law No. 6 of 2016, read from the text layer
+   of the Ministry's PDF (retrieved 29 October 2026). The site shows only a general "all rights reserved" footer and
+   states no terms of reuse for its legal texts.
+   Changes by Lexifina: the text layer was converted to Markdown, one file per article; Arabic presentation forms and
+   a few look-alike letters were converted to standard Arabic letters, wrapped lines were joined, page numbers and
+   footnotes were left out. The wording of the law was not changed.
+
+2. DCAF, Geneva Centre for Security Sector Governance, Libya Security Sector Legal Database
+   (https://security-legislation.ly), Arabic texts (retrieved from 26 November 2026). The site carries the footer
+   "Copyright (c) 2024 DCAF. All rights reserved." and states no other terms of reuse. DCAF marks its texts as
+   "un-official transcription" and refers to the original as published by the Libyan authorities; every commit taken
+   from it carries "Source-status: unofficial transcription". Lexifina takes the legal text only (no DCAF
+   translation, notes or layout).
+   Changes by Lexifina: HTML converted to Markdown, one file per article; whitespace squeezed. The wording was not
+   changed.
+
+Neither the Ministry of Justice nor DCAF endorses this repository. For anything that matters, read the original as
+published in the Official Gazette of Libya.
