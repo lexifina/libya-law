@@ -79,7 +79,7 @@ The texts in every folder other than `قوانين/1953/القانون-المد�
 1. `run.py` lists the Arabic posts of the DCAF Libya Security Sector Legal Database through its public WordPress
    REST API (`/ar/wp-json/wp/v2/latest-laws`, 22 requests of 100), then fetches each post's page for the fields the
    API does not carry (number, date, issuing body, the text a consolidation revises). 4 requests in flight, at least
-   1 second apart each; 2,197 requests in all, every one answered 200.
+   1 second apart each; 2,201 requests in all, every one answered 200.
 2. `build.py` turns each text into one folder (one file per article), dated 12:00 Africa/Tripoli on its day, and
    appends the commits to `main` with `git fast-import`, oldest day first in each pass. Held texts (drafts, a day
    that looks like a placeholder or disagrees with the title's year, the Penal Code and the procedure codes whose
